@@ -19,6 +19,12 @@
 		266ACA8622144B6C000FFF62 /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA8522144B6C000FFF62 /* SplashAssembly.swift */; };
 		266ACA8922144BC3000FFF62 /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA8822144BC3000FFF62 /* BaseProtocols.swift */; };
 		266ACA8D22144CE3000FFF62 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA8C22144CE3000FFF62 /* MainCoordinator.swift */; };
+		266ACA922214711F000FFF62 /* ThirdPartyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA912214711F000FFF62 /* ThirdPartyServices.swift */; };
+		266ACA9522158A62000FFF62 /* FlickrService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA9422158A62000FFF62 /* FlickrService.swift */; };
+		266ACA9722158A7D000FFF62 /* FlickrRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA9622158A7D000FFF62 /* FlickrRequest.swift */; };
+		266ACA9922158B0F000FFF62 /* FlickrResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA9822158B0F000FFF62 /* FlickrResponse.swift */; };
+		266ACA9B22158C04000FFF62 /* FlickrSerchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA9A22158C04000FFF62 /* FlickrSerchRequest.swift */; };
+		266ACA9D22158D23000FFF62 /* FlickerRecentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266ACA9C22158D23000FFF62 /* FlickerRecentRequest.swift */; };
 		F54BEF8A2197E1C589EC8609 /* Pods_FlickerViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E083687464AB240A410F080 /* Pods_FlickerViewer.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +55,12 @@
 		266ACA8522144B6C000FFF62 /* SplashAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		266ACA8822144BC3000FFF62 /* BaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
 		266ACA8C22144CE3000FFF62 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		266ACA912214711F000FFF62 /* ThirdPartyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyServices.swift; sourceTree = "<group>"; };
+		266ACA9422158A62000FFF62 /* FlickrService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrService.swift; sourceTree = "<group>"; };
+		266ACA9622158A7D000FFF62 /* FlickrRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrRequest.swift; sourceTree = "<group>"; };
+		266ACA9822158B0F000FFF62 /* FlickrResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrResponse.swift; sourceTree = "<group>"; };
+		266ACA9A22158C04000FFF62 /* FlickrSerchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSerchRequest.swift; sourceTree = "<group>"; };
+		266ACA9C22158D23000FFF62 /* FlickerRecentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickerRecentRequest.swift; sourceTree = "<group>"; };
 		4E083687464AB240A410F080 /* Pods_FlickerViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickerViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA076516A6DD36B4D1FBCBDB /* Pods-FlickerViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickerViewer/Pods-FlickerViewer.debug.xcconfig"; sourceTree = "<group>"; };
 		F3588299BEFD2F8AF236B20D /* Pods-FlickerViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickerViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickerViewer/Pods-FlickerViewer.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +117,7 @@
 		266ACA4122143C3F000FFF62 /* FlickerViewer */ = {
 			isa = PBXGroup;
 			children = (
+				266ACA8E22146A40000FFF62 /* Services */,
 				266ACA8B22144CC6000FFF62 /* Coordinators */,
 				266ACA712214406F000FFF62 /* Modules */,
 				266ACA4222143C3F000FFF62 /* AppDelegate.swift */,
@@ -200,6 +213,27 @@
 				266ACA8C22144CE3000FFF62 /* MainCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		266ACA8E22146A40000FFF62 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				266ACA9322158A48000FFF62 /* FlickrService */,
+				266ACA912214711F000FFF62 /* ThirdPartyServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		266ACA9322158A48000FFF62 /* FlickrService */ = {
+			isa = PBXGroup;
+			children = (
+				266ACA9422158A62000FFF62 /* FlickrService.swift */,
+				266ACA9822158B0F000FFF62 /* FlickrResponse.swift */,
+				266ACA9622158A7D000FFF62 /* FlickrRequest.swift */,
+				266ACA9C22158D23000FFF62 /* FlickerRecentRequest.swift */,
+				266ACA9A22158C04000FFF62 /* FlickrSerchRequest.swift */,
+			);
+			path = FlickrService;
 			sourceTree = "<group>";
 		};
 		98FB27330CAA6C7D75E408F4 /* Frameworks */ = {
@@ -361,13 +395,19 @@
 			files = (
 				266ACA7F2214406F000FFF62 /* SplashProtocols.swift in Sources */,
 				266ACA8622144B6C000FFF62 /* SplashAssembly.swift in Sources */,
+				266ACA9522158A62000FFF62 /* FlickrService.swift in Sources */,
 				266ACA802214406F000FFF62 /* SplashInteractor.swift in Sources */,
+				266ACA9B22158C04000FFF62 /* FlickrSerchRequest.swift in Sources */,
 				266ACA7D2214406F000FFF62 /* SplashRouter.swift in Sources */,
 				266ACA4322143C3F000FFF62 /* AppDelegate.swift in Sources */,
+				266ACA9722158A7D000FFF62 /* FlickrRequest.swift in Sources */,
 				266ACA7C2214406F000FFF62 /* SplashPresenter.swift in Sources */,
+				266ACA9922158B0F000FFF62 /* FlickrResponse.swift in Sources */,
 				266ACA8922144BC3000FFF62 /* BaseProtocols.swift in Sources */,
 				266ACA8D22144CE3000FFF62 /* MainCoordinator.swift in Sources */,
 				266ACA7E2214406F000FFF62 /* SplashViewController.swift in Sources */,
+				266ACA9D22158D23000FFF62 /* FlickerRecentRequest.swift in Sources */,
+				266ACA922214711F000FFF62 /* ThirdPartyServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
