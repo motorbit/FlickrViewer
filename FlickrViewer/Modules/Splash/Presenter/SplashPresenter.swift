@@ -11,7 +11,10 @@ class SplashPresenter: SplashPresenterProtocol, SplashInteractorOutput {
     weak var view: SplashViewInput?
     var interactor: SplashInteractorInput!
     var router: SplashRouterProtocol!
-    
+ 
+    func showed() {
+        self.router.showMainScreen()
+    }
 }
 
 
