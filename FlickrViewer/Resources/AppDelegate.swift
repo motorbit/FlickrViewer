@@ -1,19 +1,19 @@
 //
 //  AppDelegate.swift
-//  FlickerViewer
+//  FlickrViewer
 //
 //  Created by Anton Makarov on 2/13/19.
-//  Copyright © 2019 Anton Makarov. All rights reserved.
+//  Copyright © 2019 TecSynt Solutions. All rights reserved.
 //
 
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         configureWindow()
         return true
@@ -28,4 +28,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MainCoordinator(navigation).start()
     }
 }
-

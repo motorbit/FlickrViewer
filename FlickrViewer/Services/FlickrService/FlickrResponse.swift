@@ -1,6 +1,6 @@
 //
 //  FlickrResponse.swift
-//  FlickerViewer
+//  FlickrViewer
 //
 //  Created by Anton Makarov on 2/14/19.
 //  Copyright © 2019 Anton Makarov. All rights reserved.
