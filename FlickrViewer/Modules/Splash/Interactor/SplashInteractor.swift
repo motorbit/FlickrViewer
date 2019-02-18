@@ -9,5 +9,5 @@
 class SplashInteractor: SplashInteractorInput {
     
     weak var presenter: SplashInteractorOutput?
-
+    
 }

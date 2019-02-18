@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-final class FlickrService {
+final class FlickrService: FlickerServiceProtocol {
     static let shared = FlickrService()
     
     private init() {}
@@ -24,12 +23,7 @@ final class FlickrService {
             .makeRequest() else { return }
         execute(request, completion: completion)
     }
-    
-    enum Result<Value> {
-        case success(Value)
-        case failure(Error)
-    }
-    
+ 
     private func execute(_ request: URLRequest, completion: ((Result<RecentResponse>) -> Void)?) {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)

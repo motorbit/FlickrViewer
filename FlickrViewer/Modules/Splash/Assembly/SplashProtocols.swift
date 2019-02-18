@@ -10,12 +10,14 @@
 import UIKit
 
 protocol SplashRouterProtocol: class {
+    func showMainScreen()
 }
 
 protocol SplashViewInput: class {
 }
 
 protocol SplashPresenterProtocol: class {
+    func showed()
 }
 
 protocol SplashInteractorOutput: class {
