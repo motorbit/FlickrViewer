@@ -14,7 +14,8 @@ final class FlickrService: FlickerServiceProtocol {
     private init() {}
     
     func getRecent(_ page: Int, size: Int, completion: ((Result<RecentResponse>) -> Void)?)  {
-        guard let request = FlickrRecentRequest(page: page, size: size).makeRequest() else { return }
+        let extras = "date_upload,date_taken,owner_name,url_t,url_o"
+        guard let request = FlickrRecentRequest(page: page, size: size, extras: extras).makeRequest() else { return }
         execute(request, completion: completion)
     }
     

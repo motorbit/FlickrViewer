@@ -19,5 +19,7 @@ enum Constants {
         static let pink = "fe2d84"
         static let white = "FFFFFF"
         static let textColor = "4f4f4f"
+        static let whiteSmoke = "#f8f8f8"
+        static let black = "000000"
     }
 }

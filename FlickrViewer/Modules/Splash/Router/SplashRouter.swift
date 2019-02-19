@@ -11,7 +11,13 @@ import UIKit
 
 class SplashRouter: SplashRouterProtocol {
     
+    private let coordinator: SplashCoordinator!
+    
+    init(_ coordinator: SplashCoordinator) {
+        self.coordinator = coordinator
+    }
+    
     func showMainScreen() {
-        
+        coordinator.showMainScreen()
     }
 }

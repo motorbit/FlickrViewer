@@ -8,16 +8,17 @@
 
 import UIKit
 
-protocol SplashCoordinator {
-    func showMainScreen()
+protocol MainCoordinator {
+    
 }
 
-class SplashAssembly: Assembly {
+class MainAssembly: Assembly {
     
     private let deps: Dependencies
     
     struct Dependencies {
-        let coordinator: SplashCoordinator
+        let flickerService: FlickerServiceProtocol
+        let coordinator: MainCoordinator
     }
     
     init(_ deps: Dependencies) {
@@ -25,13 +26,16 @@ class SplashAssembly: Assembly {
     }
     
     func build() -> UIViewController {
-        let view = SplashViewController()
-        let presenter = SplashPresenter()
-        let router = SplashRouter(deps.coordinator)
+        let view = MainViewController()
+        let presenter = MainPresenter()
+        let interactor = MainInteractor(self.deps.flickerService)
+        let router = MainRouter()
         // Connecting
         view.presenter = presenter
         presenter.view = view
         presenter.router = router
+        presenter.interactor = interactor
+        interactor.presenter = presenter
         
         return view
     }

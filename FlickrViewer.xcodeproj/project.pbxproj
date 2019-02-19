@@ -11,12 +11,11 @@
 		26C496D8221B0A6B003FCCD1 /* FlickrViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C496D6221B0A6B003FCCD1 /* FlickrViewer.xcdatamodeld */; };
 		26C496DA221B0A6D003FCCD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C496D9221B0A6D003FCCD1 /* Assets.xcassets */; };
 		26C496E8221B0A6D003FCCD1 /* FlickrViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496E7221B0A6D003FCCD1 /* FlickrViewerTests.swift */; };
-		26C49702221B0B40003FCCD1 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496F4221B0B40003FCCD1 /* MainCoordinator.swift */; };
+		26C49702221B0B40003FCCD1 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496F4221B0B40003FCCD1 /* RootCoordinator.swift */; };
 		26C49703221B0B40003FCCD1 /* SplashProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496F8221B0B40003FCCD1 /* SplashProtocols.swift */; };
 		26C49704221B0B40003FCCD1 /* SplashAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496F9221B0B40003FCCD1 /* SplashAssembly.swift */; };
 		26C49705221B0B40003FCCD1 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496FB221B0B40003FCCD1 /* SplashPresenter.swift */; };
 		26C49706221B0B40003FCCD1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496FD221B0B40003FCCD1 /* SplashViewController.swift */; };
-		26C49707221B0B40003FCCD1 /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496FF221B0B40003FCCD1 /* SplashInteractor.swift */; };
 		26C49708221B0B40003FCCD1 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C49701221B0B40003FCCD1 /* SplashRouter.swift */; };
 		26C4970B221B0B68003FCCD1 /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C4970A221B0B68003FCCD1 /* BaseProtocols.swift */; };
 		26C4970E221B0BD6003FCCD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C4970D221B0BD6003FCCD1 /* LaunchScreen.storyboard */; };
@@ -30,6 +29,18 @@
 		26C4972D221B49EB003FCCD1 /* LayoutAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C4972C221B49EB003FCCD1 /* LayoutAdjustment.swift */; };
 		26C49731221B4F9E003FCCD1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C49730221B4F9E003FCCD1 /* Constants.swift */; };
 		26F33CD3221B67800014951B /* ServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CD2221B67800014951B /* ServiceFactory.swift */; };
+		26F33CE0221B6B340014951B /* MainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CD6221B6B340014951B /* MainProtocols.swift */; };
+		26F33CE1221B6B340014951B /* MainAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CD7221B6B340014951B /* MainAssembly.swift */; };
+		26F33CE2221B6B340014951B /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CD9221B6B340014951B /* MainPresenter.swift */; };
+		26F33CE3221B6B340014951B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CDB221B6B340014951B /* MainViewController.swift */; };
+		26F33CE4221B6B340014951B /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CDD221B6B340014951B /* MainInteractor.swift */; };
+		26F33CE5221B6B340014951B /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CDF221B6B340014951B /* MainRouter.swift */; };
+		26F33CE7221B7F840014951B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CE6221B7F840014951B /* UIViewExtension.swift */; };
+		26F33CEC221B827A0014951B /* TitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CEB221B827A0014951B /* TitleLabel.swift */; };
+		26F33CEE221B86800014951B /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CED221B86800014951B /* SearchField.swift */; };
+		26F33CF0221B93440014951B /* CollectionViewDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CEF221B93440014951B /* CollectionViewDS.swift */; };
+		26F33CF4221B93DD0014951B /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CF3221B93DD0014951B /* Cell.swift */; };
+		26F33CF6221B9B460014951B /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CF5221B9B460014951B /* CollectionView.swift */; };
 		94E7E9186C764FEC04EBD9F6 /* Pods_FlickrViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BA23B71C06289BF3676B8A /* Pods_FlickrViewer.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,12 +63,11 @@
 		26C496E3221B0A6D003FCCD1 /* FlickrViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickrViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C496E7221B0A6D003FCCD1 /* FlickrViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrViewerTests.swift; sourceTree = "<group>"; };
 		26C496E9221B0A6D003FCCD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26C496F4221B0B40003FCCD1 /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		26C496F4221B0B40003FCCD1 /* RootCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		26C496F8221B0B40003FCCD1 /* SplashProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashProtocols.swift; sourceTree = "<group>"; };
 		26C496F9221B0B40003FCCD1 /* SplashAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashAssembly.swift; sourceTree = "<group>"; };
 		26C496FB221B0B40003FCCD1 /* SplashPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		26C496FD221B0B40003FCCD1 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		26C496FF221B0B40003FCCD1 /* SplashInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		26C49701221B0B40003FCCD1 /* SplashRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		26C4970A221B0B68003FCCD1 /* BaseProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
 		26C4970D221B0BD6003FCCD1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -71,6 +81,18 @@
 		26C4972C221B49EB003FCCD1 /* LayoutAdjustment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAdjustment.swift; sourceTree = "<group>"; };
 		26C49730221B4F9E003FCCD1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		26F33CD2221B67800014951B /* ServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceFactory.swift; sourceTree = "<group>"; };
+		26F33CD6221B6B340014951B /* MainProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainProtocols.swift; sourceTree = "<group>"; };
+		26F33CD7221B6B340014951B /* MainAssembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAssembly.swift; sourceTree = "<group>"; };
+		26F33CD9221B6B340014951B /* MainPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		26F33CDB221B6B340014951B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		26F33CDD221B6B340014951B /* MainInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		26F33CDF221B6B340014951B /* MainRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		26F33CE6221B7F840014951B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		26F33CEB221B827A0014951B /* TitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLabel.swift; sourceTree = "<group>"; };
+		26F33CED221B86800014951B /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		26F33CEF221B93440014951B /* CollectionViewDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDS.swift; sourceTree = "<group>"; };
+		26F33CF3221B93DD0014951B /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		26F33CF5221B9B460014951B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		65BA23B71C06289BF3676B8A /* Pods_FlickrViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AFF1660E19CF1AC7455056 /* Pods-FlickrViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrViewer/Pods-FlickrViewer.release.xcconfig"; sourceTree = "<group>"; };
 		7E2AA660AC0F7F6453D3A8CA /* Pods-FlickrViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrViewer/Pods-FlickrViewer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -153,7 +175,7 @@
 		26C496F3221B0B40003FCCD1 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				26C496F4221B0B40003FCCD1 /* MainCoordinator.swift */,
+				26C496F4221B0B40003FCCD1 /* RootCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -161,6 +183,7 @@
 		26C496F5221B0B40003FCCD1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				26F33CD4221B6B340014951B /* MainScreen */,
 				26C496F6221B0B40003FCCD1 /* Splash */,
 			);
 			path = Modules;
@@ -172,7 +195,6 @@
 				26C496F7221B0B40003FCCD1 /* Assembly */,
 				26C496FA221B0B40003FCCD1 /* Presenter */,
 				26C496FC221B0B40003FCCD1 /* View */,
-				26C496FE221B0B40003FCCD1 /* Interactor */,
 				26C49700221B0B40003FCCD1 /* Router */,
 			);
 			path = Splash;
@@ -201,14 +223,6 @@
 				26C496FD221B0B40003FCCD1 /* SplashViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		26C496FE221B0B40003FCCD1 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				26C496FF221B0B40003FCCD1 /* SplashInteractor.swift */,
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		26C49700221B0B40003FCCD1 /* Router */ = {
@@ -253,9 +267,68 @@
 			isa = PBXGroup;
 			children = (
 				26C49722221B1C35003FCCD1 /* ColorExtension.swift */,
+				26F33CE6221B7F840014951B /* UIViewExtension.swift */,
 				26C4972C221B49EB003FCCD1 /* LayoutAdjustment.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		26F33CD4221B6B340014951B /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CD5221B6B340014951B /* Assembly */,
+				26F33CD8221B6B340014951B /* Presenter */,
+				26F33CDA221B6B340014951B /* View */,
+				26F33CDC221B6B340014951B /* Interactor */,
+				26F33CDE221B6B340014951B /* Router */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		26F33CD5221B6B340014951B /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CD6221B6B340014951B /* MainProtocols.swift */,
+				26F33CD7221B6B340014951B /* MainAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		26F33CD8221B6B340014951B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CD9221B6B340014951B /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		26F33CDA221B6B340014951B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CDB221B6B340014951B /* MainViewController.swift */,
+				26F33CEB221B827A0014951B /* TitleLabel.swift */,
+				26F33CED221B86800014951B /* SearchField.swift */,
+				26F33CEF221B93440014951B /* CollectionViewDS.swift */,
+				26F33CF3221B93DD0014951B /* Cell.swift */,
+				26F33CF5221B9B460014951B /* CollectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		26F33CDC221B6B340014951B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CDD221B6B340014951B /* MainInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		26F33CDE221B6B340014951B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				26F33CDF221B6B340014951B /* MainRouter.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		8DBC0E0E6C950D61298C9A8E /* Pods */ = {
@@ -424,26 +497,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26F33CE4221B6B340014951B /* MainInteractor.swift in Sources */,
 				26F33CD3221B67800014951B /* ServiceFactory.swift in Sources */,
 				26C49703221B0B40003FCCD1 /* SplashProtocols.swift in Sources */,
+				26F33CF4221B93DD0014951B /* Cell.swift in Sources */,
 				26C496D8221B0A6B003FCCD1 /* FlickrViewer.xcdatamodeld in Sources */,
 				26C4971C221B0FB1003FCCD1 /* FlickrRequest.swift in Sources */,
 				26C49718221B0FB1003FCCD1 /* FlickrService.swift in Sources */,
-				26C49702221B0B40003FCCD1 /* MainCoordinator.swift in Sources */,
+				26F33CE3221B6B340014951B /* MainViewController.swift in Sources */,
+				26C49702221B0B40003FCCD1 /* RootCoordinator.swift in Sources */,
 				26C49719221B0FB1003FCCD1 /* FlickrSerchRequest.swift in Sources */,
 				26C49723221B1C35003FCCD1 /* ColorExtension.swift in Sources */,
 				26C49704221B0B40003FCCD1 /* SplashAssembly.swift in Sources */,
 				26C4970B221B0B68003FCCD1 /* BaseProtocols.swift in Sources */,
+				26F33CE0221B6B340014951B /* MainProtocols.swift in Sources */,
 				26C496D0221B0A6B003FCCD1 /* AppDelegate.swift in Sources */,
+				26F33CE1221B6B340014951B /* MainAssembly.swift in Sources */,
 				26C4972D221B49EB003FCCD1 /* LayoutAdjustment.swift in Sources */,
+				26F33CE2221B6B340014951B /* MainPresenter.swift in Sources */,
 				26C49706221B0B40003FCCD1 /* SplashViewController.swift in Sources */,
+				26F33CEE221B86800014951B /* SearchField.swift in Sources */,
 				26C49717221B0FB1003FCCD1 /* ThirdPartyServices.swift in Sources */,
+				26F33CF6221B9B460014951B /* CollectionView.swift in Sources */,
+				26F33CF0221B93440014951B /* CollectionViewDS.swift in Sources */,
 				26C49705221B0B40003FCCD1 /* SplashPresenter.swift in Sources */,
 				26C49708221B0B40003FCCD1 /* SplashRouter.swift in Sources */,
 				26C49731221B4F9E003FCCD1 /* Constants.swift in Sources */,
-				26C49707221B0B40003FCCD1 /* SplashInteractor.swift in Sources */,
+				26F33CE7221B7F840014951B /* UIViewExtension.swift in Sources */,
 				26C4971A221B0FB1003FCCD1 /* FlickrResponse.swift in Sources */,
+				26F33CEC221B827A0014951B /* TitleLabel.swift in Sources */,
 				26C4971B221B0FB1003FCCD1 /* FlickrRecentRequest.swift in Sources */,
+				26F33CE5221B6B340014951B /* MainRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

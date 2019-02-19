@@ -20,9 +20,13 @@ struct RecentResponse: Decodable {
         let photo: [Photo]
         
         struct Photo: Decodable {
-            let id: String
-            let owner: String
             let title: String
+            let dateupload: String
+            let datetaken: String
+            let ownername: String
+            let url_t: String
+            let height_t: String
+            let width_t: String
         }
     }
 }

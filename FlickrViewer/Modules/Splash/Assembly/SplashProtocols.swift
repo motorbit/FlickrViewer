@@ -19,9 +19,3 @@ protocol SplashViewInput: class {
 protocol SplashPresenterProtocol: class {
     func showed()
 }
-
-protocol SplashInteractorOutput: class {
-}
-
-protocol SplashInteractorInput: class {
-}
