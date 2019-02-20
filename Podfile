@@ -3,6 +3,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'FlickrViewer' do
-	pod 'SnapKit', '~> 4.2.0' 
+	pod 'SnapKit', '~> 4.2.0'
+    pod 'SDWebImage', '~> 4.0'
 end
 

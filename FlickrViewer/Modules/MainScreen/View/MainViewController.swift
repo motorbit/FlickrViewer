@@ -56,7 +56,7 @@ final class MainViewController: UIViewController, MainViewInput {
     
     private lazy var collectionView: UICollectionView = {
         let cv = CollectionView()
-        cv.setup(ds)
+        cv.setup(ds, delegate: self)
         self.view.addSubview(cv)
         
         cv.snp.makeConstraints({ make in
@@ -74,7 +74,11 @@ final class MainViewController: UIViewController, MainViewInput {
     }
     
     func setup(model: MainModel) {
-        ds.model = model
+        if ds.model == nil {
+            ds.model = model
+        } else {
+            ds.model?.photos.append(contentsOf: model.photos)
+        }
         collectionView.reloadData()
     }
 }
@@ -99,6 +103,20 @@ extension MainViewController {
         enum collection {
             static let top = CGFloat(8)
         }
+    }
+}
+
+extension MainViewController: CollectionViewProtocol {
+    func scrolled(_ to: Int) {
+        print(to)
+        guard let model = ds.model else { return }
+        if model.photos.count < model.total, model.photos.count - 25 <= to {
+            self.presenter.getNext()
+        }
+    }
+    
+    func selected(_ photo: MainModel.Photo) {
+        self.presenter.selected(photo: photo)
     }
 }
 

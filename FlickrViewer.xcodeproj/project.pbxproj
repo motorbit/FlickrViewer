@@ -41,6 +41,8 @@
 		26F33CF0221B93440014951B /* CollectionViewDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CEF221B93440014951B /* CollectionViewDS.swift */; };
 		26F33CF4221B93DD0014951B /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CF3221B93DD0014951B /* Cell.swift */; };
 		26F33CF6221B9B460014951B /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CF5221B9B460014951B /* CollectionView.swift */; };
+		26F33CFB221CC3610014951B /* СollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CFA221CC3600014951B /* СollectionViewLayout.swift */; };
+		26F33CFD221CDC240014951B /* ModelConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F33CFC221CDC240014951B /* ModelConverter.swift */; };
 		94E7E9186C764FEC04EBD9F6 /* Pods_FlickrViewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BA23B71C06289BF3676B8A /* Pods_FlickrViewer.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +95,8 @@
 		26F33CEF221B93440014951B /* CollectionViewDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDS.swift; sourceTree = "<group>"; };
 		26F33CF3221B93DD0014951B /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		26F33CF5221B9B460014951B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		26F33CFA221CC3600014951B /* СollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "СollectionViewLayout.swift"; sourceTree = "<group>"; };
+		26F33CFC221CDC240014951B /* ModelConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConverter.swift; sourceTree = "<group>"; };
 		65BA23B71C06289BF3676B8A /* Pods_FlickrViewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrViewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71AFF1660E19CF1AC7455056 /* Pods-FlickrViewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrViewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrViewer/Pods-FlickrViewer.release.xcconfig"; sourceTree = "<group>"; };
 		7E2AA660AC0F7F6453D3A8CA /* Pods-FlickrViewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrViewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlickrViewer/Pods-FlickrViewer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				26F33CEF221B93440014951B /* CollectionViewDS.swift */,
 				26F33CF3221B93DD0014951B /* Cell.swift */,
 				26F33CF5221B9B460014951B /* CollectionView.swift */,
+				26F33CFA221CC3600014951B /* СollectionViewLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -319,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				26F33CDD221B6B340014951B /* MainInteractor.swift */,
+				26F33CFC221CDC240014951B /* ModelConverter.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -455,12 +461,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FlickrViewer/Pods-FlickrViewer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,11 +524,13 @@
 				26C4972D221B49EB003FCCD1 /* LayoutAdjustment.swift in Sources */,
 				26F33CE2221B6B340014951B /* MainPresenter.swift in Sources */,
 				26C49706221B0B40003FCCD1 /* SplashViewController.swift in Sources */,
+				26F33CFD221CDC240014951B /* ModelConverter.swift in Sources */,
 				26F33CEE221B86800014951B /* SearchField.swift in Sources */,
 				26C49717221B0FB1003FCCD1 /* ThirdPartyServices.swift in Sources */,
 				26F33CF6221B9B460014951B /* CollectionView.swift in Sources */,
 				26F33CF0221B93440014951B /* CollectionViewDS.swift in Sources */,
 				26C49705221B0B40003FCCD1 /* SplashPresenter.swift in Sources */,
+				26F33CFB221CC3610014951B /* СollectionViewLayout.swift in Sources */,
 				26C49708221B0B40003FCCD1 /* SplashRouter.swift in Sources */,
 				26C49731221B4F9E003FCCD1 /* Constants.swift in Sources */,
 				26F33CE7221B7F840014951B /* UIViewExtension.swift in Sources */,

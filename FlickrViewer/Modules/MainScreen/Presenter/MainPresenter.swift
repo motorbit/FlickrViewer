@@ -6,7 +6,7 @@
 //  Copyright © 2019 TecSynt Solutions. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
     
@@ -14,42 +14,52 @@ class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
     var interactor: MainInteractorInput!
     var router: MainRouterProtocol!
  
+    private var currentPage = 1
+    private var pages = 0
+    private var requestedNewData = false
+    
     func showed() {
+        requestedNewData = true
         DispatchQueue.global(qos: .background).async { [unowned self] in
-            self.interactor.getRecent(page: 1)
+            self.interactor.getRecent(page: self.currentPage)
         }
     }
     
     func recentFetched(_ result: RecentResponse) {
+        requestedNewData = false
+        let total = result.photos.total.intValue ?? 0
+        let photo = result.photos.photo.compactMap({ photo -> MainModel.Photo? in
+            return ModelConverter.convert(photo: photo)
+        })
+        let model = MainModel(total: total, photos:photo)
+        self.currentPage = result.photos.page
+        self.pages = result.photos.pages
+        
         DispatchQueue.main.async { [unowned self] in
-            let total = result.photos.total.intValue ?? 0
-            let photo =  result.photos.photo.map( { photo -> MainModel.Photo in
-                return MainPresenter.convert(photo: photo)
-            })
-            let model = MainModel(total: total, photos:photo)
             self.view?.setup(model: model)
         }
     }
     
     func somethingWentWrong(_ error: Error) {
+        requestedNewData = false
         DispatchQueue.main.async { [unowned self] in
             print(error)
         }
     }
     
-    
-    private static func convert(photo: RecentResponse.Photos.Photo) -> MainModel.Photo {
-        let thumb = MainModel.Img(url: photo.url_t, size: CGSize(width: Int(photo.width_t)!, height: Int(photo.height_t)!))
-        
-        return MainModel.Photo(title: photo.title,
-                               thumb: thumb,
-                               uploaded: Date(),
-                               taken: Date(),
-                               owner: photo.ownername,
-                               orig: thumb)
-        
+    func getNext() {
+        let nextPage = currentPage + 1
+        if !requestedNewData, nextPage <= pages {
+            requestedNewData = true
+            DispatchQueue.global(qos: .background).async { [unowned self] in
+                self.interactor.getRecent(page: nextPage)
+            }
+        }
     }
     
+    func selected(photo: MainModel.Photo) {
+        self.router.openPreview(photo: photo)
+    }
 }
 
 

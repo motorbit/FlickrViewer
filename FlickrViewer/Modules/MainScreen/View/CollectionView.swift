@@ -8,9 +8,15 @@
 
 import UIKit
 
-final class CollectionView: UICollectionView, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+protocol CollectionViewProtocol: class {
+    func scrolled(_ to: Int)
+    func selected(_ photo: MainModel.Photo)
+}
+
+final class CollectionView: UICollectionView {
     
     private let width = (UIScreen.main.bounds.width - 8 * 3) / 2
+    private weak var interactionDelegate: CollectionViewProtocol?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: CGRect.zero, collectionViewLayout: CollectionView.layout)
@@ -22,9 +28,13 @@ final class CollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         setup()
     }
     
-    func setup(_ ds: UICollectionViewDataSource) {
+    func setup(_ ds: UICollectionViewDataSource, delegate: CollectionViewProtocol? = nil) {
         self.dataSource = ds
         self.delegate = self
+        self.interactionDelegate = delegate
+        if let layout = self.collectionViewLayout as? CollectionViewLayout {
+            layout.delegate = self
+        }
     }
     
     private func setup() {
@@ -32,29 +42,40 @@ final class CollectionView: UICollectionView, UICollectionViewDelegate, UICollec
         self.register(Cell.self, forCellWithReuseIdentifier: "cell")
     }
     
-    private static var layout: UICollectionViewFlowLayout {
+    private static var layout: UICollectionViewLayout {
         get {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .vertical
-            layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            layout.minimumLineSpacing = 8.0
-            layout.minimumInteritemSpacing = 8.0
+            let layout = CollectionViewLayout()
             return layout
         }
     }
-    
+}
+
+extension CollectionView: CollectionViewLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
         guard let ds = collectionView.dataSource as? CollectionViewDS,
-              let size = ds.model?.photos[indexPath.row].thumb.size
+              let size = ds.model?.photos[indexPath.row].thumb?.size
         else {
-            return CGSize.zero
+            return 0
         }
+        
         let multiple = size.width / width
         let height = size.height / multiple
         
-        return CGSize(width: width, height: height)
+        return height
     }
+}
 
+extension CollectionView: UICollectionViewDelegate {
+   
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.interactionDelegate?.scrolled(indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let ds = collectionView.dataSource as? CollectionViewDS,
+              let photo = ds.model?.photos[indexPath.row]
+        else { return }
+        self.interactionDelegate?.selected(photo)
+    }
 }

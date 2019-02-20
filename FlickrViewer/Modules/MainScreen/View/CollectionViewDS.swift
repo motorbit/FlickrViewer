@@ -29,16 +29,16 @@ final class CollectionViewDS: NSObject, UICollectionViewDataSource {
 }
 
 struct MainModel {
-    let total: Int
-    let photos: [Photo]
+    var total: Int
+    var photos: [Photo]
     
     struct Photo {
         let title: String
-        let thumb: Img
+        let thumb: Img?
         let uploaded: Date
         let taken: Date?
         let owner: String
-        let orig: Img
+        let orig: Img?
     }
     
     struct Img {

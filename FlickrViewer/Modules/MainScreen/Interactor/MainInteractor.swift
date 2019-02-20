@@ -18,7 +18,7 @@ class MainInteractor: MainInteractorInput {
     }
     
     func getRecent(page: Int) {
-        self.flickrService.getRecent(page, size: 30) { (result) in
+        self.flickrService.getRecent(page, size: 50) { (result) in
             switch result {
             case .failure(let error):
                 self.presenter?.somethingWentWrong(error)

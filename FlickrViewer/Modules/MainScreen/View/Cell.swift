@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SnapKit
+import SDWebImage
 
 class Cell: UICollectionViewCell {
     
@@ -18,7 +20,20 @@ class Cell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
+    private lazy var imageView: UIImageView = {
+        let imgV = UIImageView()
+        imgV.contentMode = .scaleAspectFill
+        self.addSubview(imgV)
+        
+        imgV.snp.makeConstraints({ make in
+            make.left.right.top.bottom.equalTo(self)
+        })
+        return imgV
+    }()
+    
     func setup(photo: MainModel.Photo) {
-        backgroundColor = UIColor.green
+        self.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
+        guard let thumb = photo.thumb?.url, let url = URL(string: thumb) else { return }
+        imageView.sd_setImage(with: url, placeholderImage: nil)
     }
 }

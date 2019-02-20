@@ -11,4 +11,7 @@ import UIKit
 
 class MainRouter: MainRouterProtocol {
     
+    func openPreview(photo: MainModel.Photo) {
+        print(photo)
+    }
 }

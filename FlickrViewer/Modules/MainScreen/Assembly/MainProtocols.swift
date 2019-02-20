@@ -10,6 +10,7 @@
 import UIKit
 
 protocol MainRouterProtocol: class {
+    func openPreview(photo: MainModel.Photo)
 }
 
 protocol MainViewInput: class {
@@ -18,6 +19,8 @@ protocol MainViewInput: class {
 
 protocol MainPresenterProtocol: class {
     func showed()
+    func getNext()
+    func selected(photo: MainModel.Photo)
 }
 
 protocol MainInteractorOutput: class {
