@@ -60,8 +60,9 @@ final class MainViewController: UIViewController, MainViewInput {
         self.view.addSubview(cv)
         
         cv.snp.makeConstraints({ make in
-            make.left.right.bottom.equalTo(self.view)
-            make.top.equalTo(self.separator.snp.bottom).offset(Constraints.collection.top)
+            make.left.right.equalTo(self.view)
+            make.top.equalTo(self.separator.snp.bottom)
+            make.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top)
         })
         
         return cv
@@ -71,6 +72,14 @@ final class MainViewController: UIViewController, MainViewInput {
         self.view.backgroundColor = Constants.colors.white.stringToUIColor()
         self.presenter.showed()
         self.separator.isHidden = false
+        addTapGesture()
+        
+    }
+    
+    private func addTapGesture() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnScreen(recognizer:)))
+        tapRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
     func setup(model: MainModel) {
@@ -81,6 +90,11 @@ final class MainViewController: UIViewController, MainViewInput {
         }
         collectionView.reloadData()
     }
+    
+    @objc private func tapOnScreen(recognizer: UITapGestureRecognizer) {
+        self.searchField.endEditing(true)
+    }
+    
 }
 
 extension MainViewController {
@@ -119,5 +133,3 @@ extension MainViewController: CollectionViewProtocol {
         self.presenter.selected(photo: photo)
     }
 }
-
-

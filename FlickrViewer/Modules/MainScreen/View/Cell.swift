@@ -23,17 +23,35 @@ class Cell: UICollectionViewCell {
     private lazy var imageView: UIImageView = {
         let imgV = UIImageView()
         imgV.contentMode = .scaleAspectFill
+        imgV.clipsToBounds = true
+        imgV.layer.cornerRadius = 12
+        imgV.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
         self.addSubview(imgV)
         
         imgV.snp.makeConstraints({ make in
-            make.left.right.top.bottom.equalTo(self)
+            make.left.top.equalTo(self).offset(2)
+            make.right.bottom.equalTo(self).offset(-2)
         })
         return imgV
     }()
     
     func setup(photo: MainModel.Photo) {
-        self.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
+        self.clipsToBounds = true
+        self.layer.cornerRadius = 12
+        setupShadow()
         guard let thumb = photo.thumb?.url, let url = URL(string: thumb) else { return }
         imageView.sd_setImage(with: url, placeholderImage: nil)
+    }
+    
+    private func setupShadow() {
+        backgroundColor = .clear // very important
+        layer.masksToBounds = false
+        layer.shadowOpacity = 0.25
+        layer.shadowRadius = 4
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowColor = UIColor.black.cgColor
+        
+        // add corner radius on `contentView`
+        contentView.layer.cornerRadius = 8
     }
 }

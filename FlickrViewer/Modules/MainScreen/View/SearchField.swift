@@ -24,13 +24,13 @@ final class SearchField: UITextField {
     private lazy var magnifier: UIImageView = {
         let imgV = UIImageView()
         imgV.contentMode = .scaleAspectFill
-        imgV.image = UIImage(named: "search")
+        imgV.image = UIImage(named: "search_grey")
         
         self.addSubview(imgV)
         imgV.snp.makeConstraints({ make in
             make.centerY.equalTo(self)
             make.left.equalTo(7)
-            make.width.height.equalTo(14)
+            make.width.height.equalTo(18)
         })
         return imgV
     }()

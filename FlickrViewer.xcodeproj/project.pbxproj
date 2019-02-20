@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26B344BC221D879000D3A3B0 /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B344BB221D879000D3A3B0 /* LayoutGuide.swift */; };
 		26C496D0221B0A6B003FCCD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496CF221B0A6B003FCCD1 /* AppDelegate.swift */; };
 		26C496D8221B0A6B003FCCD1 /* FlickrViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26C496D6221B0A6B003FCCD1 /* FlickrViewer.xcdatamodeld */; };
 		26C496DA221B0A6D003FCCD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C496D9221B0A6D003FCCD1 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26B344BB221D879000D3A3B0 /* LayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutGuide.swift; sourceTree = "<group>"; };
 		26C496CC221B0A6B003FCCD1 /* FlickrViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C496CF221B0A6B003FCCD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26C496D7221B0A6B003FCCD1 /* FlickrViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FlickrViewer.xcdatamodel; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				26C49722221B1C35003FCCD1 /* ColorExtension.swift */,
 				26F33CE6221B7F840014951B /* UIViewExtension.swift */,
 				26C4972C221B49EB003FCCD1 /* LayoutAdjustment.swift */,
+				26B344BB221D879000D3A3B0 /* LayoutGuide.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				26C49704221B0B40003FCCD1 /* SplashAssembly.swift in Sources */,
 				26C4970B221B0B68003FCCD1 /* BaseProtocols.swift in Sources */,
 				26F33CE0221B6B340014951B /* MainProtocols.swift in Sources */,
+				26B344BC221D879000D3A3B0 /* LayoutGuide.swift in Sources */,
 				26C496D0221B0A6B003FCCD1 /* AppDelegate.swift in Sources */,
 				26F33CE1221B6B340014951B /* MainAssembly.swift in Sources */,
 				26C4972D221B49EB003FCCD1 /* LayoutAdjustment.swift in Sources */,
