@@ -15,7 +15,7 @@ final class Cell: UICollectionViewCell {
     
     var photo: MainModel.Photo?
     
-    static let infoViewHeight: CGFloat = 100
+    static let infoViewHeight: CGFloat = 75
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,26 +25,32 @@ final class Cell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        imageView.roundCorners(corners: [.topLeft, .topRight], radius: 12)
+        info.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 12)
+    }
+    
     // MARK: UI elements
     
     lazy var imageView: UIImageView = {
         let imgV = UIImageView()
         imgV.contentMode = .scaleAspectFill
-        imgV.clipsToBounds = true
-        imgV.layer.cornerRadius = 12
-        imgV.backgroundColor = Constants.colors.whiteSmoke.uiColor
         self.addSubview(imgV)
         
         imgV.snp.makeConstraints({ make in
-            make.left.top.equalTo(self).offset(2)
-            make.right.bottom.equalTo(self).offset(-2)
+            make.left.top.equalTo(self)
+            make.right.equalTo(self)
+            make.bottom.equalTo(self.info.snp.top).offset(2)
         })
         return imgV
     }()
     
     private lazy var uploadedLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 8)
+        lbl.font = UIFont(name: Constants.fonts.regular, size: 8)
+        lbl.textColor = Constants.colors.white.uiColor
         self.info.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -55,7 +61,8 @@ final class Cell: UICollectionViewCell {
     
     private lazy var takenLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 8)
+        lbl.font = UIFont(name: Constants.fonts.regular, size: 8)
+        lbl.textColor = Constants.colors.white.uiColor
         self.info.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -67,8 +74,8 @@ final class Cell: UICollectionViewCell {
     
     private lazy var owner: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 12)
-        lbl.textColor = Constants.colors.pink.uiColor
+        lbl.font = UIFont(name: Constants.fonts.regular, size: 12)
+        lbl.textColor = Constants.colors.white.uiColor
         self.info.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -80,9 +87,9 @@ final class Cell: UICollectionViewCell {
     
     private lazy var title: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 10)
-        lbl.textColor = Constants.colors.blue.uiColor
-        lbl.numberOfLines = 4
+        lbl.font = UIFont(name: Constants.fonts.regular, size: 10)
+        lbl.textColor = Constants.colors.white.uiColor
+        lbl.numberOfLines = 2
         self.info.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -96,15 +103,13 @@ final class Cell: UICollectionViewCell {
     
     private lazy var info: UIView = {
         let view = UIView()
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 12
-        view.backgroundColor = Constants.colors.whiteSmoke.uiColor.withAlphaComponent(0.5)
+        view.backgroundColor = Constants.colors.black.uiColor.withAlphaComponent(0.8)
         self.addSubview(view)
         
         view.snp.makeConstraints({ make in
-            make.right.bottom.equalTo(self).offset(-2)
-            make.left.equalTo(self).offset(2)
-            make.height.equalTo(100)
+            make.right.bottom.equalTo(self)
+            make.left.equalTo(self)
+            make.height.equalTo(Cell.infoViewHeight)
         })
         
         return view
@@ -114,11 +119,14 @@ final class Cell: UICollectionViewCell {
     
     func setup(photo: MainModel.Photo) {
         self.photo = photo
-        self.clipsToBounds = true
-        self.layer.cornerRadius = 12
         setupShadow()
         guard let thumb = photo.thumb?.url, let url = URL(string: thumb) else { return }
-        imageView.sd_setImage(with: url, placeholderImage: nil)
+        
+        if let origin = getOriginFromCache() {
+            imageView.image = origin
+        } else {
+            imageView.sd_setImage(with: url, placeholderImage: nil)
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         if let uploaded = photo.uploaded {
@@ -129,6 +137,20 @@ final class Cell: UICollectionViewCell {
         }
         title.text = photo.title
         owner.text = photo.owner
+        self.bringSubviewToFront(imageView)
+    }
+    
+    private func getOriginFromCache() -> UIImage? {
+        if let origLink = photo?.orig?.url, let originUrl = URL(string: origLink) {
+            if let image = SDImageCache.shared().imageFromDiskCache(forKey: originUrl.absoluteString) {
+                return image
+            }
+            
+            if let image = SDImageCache.shared().imageFromMemoryCache(forKey: originUrl.absoluteString) {
+                return image
+            }
+        }
+        return nil
     }
     
     private func setupShadow() {
@@ -142,4 +164,6 @@ final class Cell: UICollectionViewCell {
         // add corner radius on `contentView`
         contentView.layer.cornerRadius = 8
     }
+    
+    
 }

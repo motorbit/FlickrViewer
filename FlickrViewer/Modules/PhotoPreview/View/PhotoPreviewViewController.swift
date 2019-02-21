@@ -126,7 +126,7 @@ extension PhotoPreviewViewController {
     @objc func handlePanGesture(_ panGesture: UIPanGestureRecognizer) {
         if panGesture.state == .began {
             isForcingNonInteractiveDismissal = false
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: transitionController?.transitionInfo.dismissComplition)
         }
         
         transitionController?.handlePanGesture(panGesture)

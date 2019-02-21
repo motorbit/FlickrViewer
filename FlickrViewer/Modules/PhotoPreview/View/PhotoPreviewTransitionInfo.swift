@@ -13,6 +13,8 @@ final class PhotoPreviewTransitionInfo: NSObject {
     private(set) var interactiveDismissalEnabled: Bool = true
     private(set) weak var startingView: UIImageView?
     private(set) weak var endingView: UIImageView?
+    
+    var dismissComplition: (() -> ())?
     var duration: TimeInterval = 0.3
     
     init(interactiveDismissalEnabled: Bool, startingView: UIImageView?, endingView: UIImageView?) {

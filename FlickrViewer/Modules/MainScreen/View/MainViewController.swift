@@ -37,7 +37,7 @@ final class MainViewController: UIViewController, MainViewInput {
         
         lbl.snp.makeConstraints({ make in
             make.right.equalTo(self.view).offset(-Constraints.totalLabel.right)
-            make.bottom.equalTo(self.searchField.snp.top).offset(-Constraints.totalLabel.bottom)
+            make.centerY.equalTo(self.titleLabel)
         })
         return lbl
     }()
@@ -156,8 +156,6 @@ extension MainViewController {
     enum Constraints {
         enum totalLabel {
             static let right = CGFloat(15)
-            static let bottom = CGFloat(8)
-
         }
         
         enum titleLabel {
@@ -191,7 +189,10 @@ extension MainViewController: CollectionViewProtocol {
     }
     
     func selected(_ photo: MainModel.Photo, imageView: UIImageView) {
-        self.presenter.selected(photo: photo, imageView: imageView)
+        self.presenter.selected(photo: photo, imageView: imageView) { [weak self] in
+            guard let self = self else { return }
+            self.collectionView.reloadData()
+        }
     }
 }
 

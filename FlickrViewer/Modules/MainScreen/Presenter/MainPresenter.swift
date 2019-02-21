@@ -62,8 +62,8 @@ final class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         }
     }
     
-    func selected(photo: MainModel.Photo, imageView: UIImageView) {
-        self.router.openPreview(photo: photo, imageView: imageView)
+    func selected(photo: MainModel.Photo, imageView: UIImageView, dismissCompletion: (()->())?) {
+        self.router.openPreview(photo: photo, imageView: imageView,  dismissCompletion:dismissCompletion)
     }
     
     // MARK: MainInteractor Output

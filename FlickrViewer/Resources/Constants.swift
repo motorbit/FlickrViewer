@@ -12,6 +12,7 @@ enum Constants {
     enum fonts {
         static let boldItalic = "HelveticaNeue-BoldItalic"
         static let medium = "HelveticaNeue-Medium"
+        static let regular = "HelveticaNeue"
     }
     
     enum colors {

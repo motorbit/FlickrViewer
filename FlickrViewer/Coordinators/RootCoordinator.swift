@@ -30,12 +30,12 @@ final class RootCoordinator: SplashCoordinator, MainCoordinator {
         _navigation.viewControllers = [mainVC]
     }
     
-    func openPreview(photo: MainModel.Photo, imageView: UIImageView) {
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView,  dismissCompletion: (()->())?) {
         let transitionInfo = PhotoPreviewTransitionInfo(
             interactiveDismissalEnabled: true,
             startingView: imageView,
             endingView: imageView)
-        
+        transitionInfo.dismissComplition = dismissCompletion
         let deps = PhotoPreviewAssembly.Dependencies(photo: photo, transitionInfo: transitionInfo)
         let previewVC = PhotoPreviewAssembly(deps).build()
         

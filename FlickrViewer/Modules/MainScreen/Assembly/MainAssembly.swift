@@ -9,7 +9,8 @@
 import UIKit
 
 protocol MainCoordinator {
-    func openPreview(photo: MainModel.Photo, imageView: UIImageView)
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView,
+                     dismissCompletion: (()->())?)
 }
 
 final class MainAssembly: Assembly {

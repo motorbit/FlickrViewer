@@ -17,7 +17,7 @@ final class MainRouter: MainRouterProtocol {
         self.coordinator = coordinator
     }
     
-    func openPreview(photo: MainModel.Photo, imageView: UIImageView) {
-        coordinator.openPreview(photo: photo, imageView: imageView)
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView, dismissCompletion: (()->())?) {
+        coordinator.openPreview(photo: photo, imageView: imageView, dismissCompletion: dismissCompletion)
     }
 }
