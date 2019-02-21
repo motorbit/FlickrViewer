@@ -1,4 +1,4 @@
-# FlickerViewer
+# FlickrViewer
 
 This is test application for work with FlickrAPI.
 
