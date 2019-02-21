@@ -28,4 +28,15 @@ class MainInteractor: MainInteractorInput {
         }
     }
     
+    func getSearch(text: String, page: Int) {
+        self.flickrService.search(text, page: page, size: 50) { result in
+            switch result {
+            case .failure(let error):
+                self.presenter?.somethingWentWrong(error)
+            case .success(let value):
+                self.presenter?.found(value)
+            }
+        }
+    }
+    
 }

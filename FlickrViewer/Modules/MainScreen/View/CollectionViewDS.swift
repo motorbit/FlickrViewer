@@ -31,6 +31,7 @@ final class CollectionViewDS: NSObject, UICollectionViewDataSource {
 struct MainModel {
     var total: Int
     var photos: [Photo]
+    var isNeedScroll: Bool
     
     struct Photo {
         let title: String

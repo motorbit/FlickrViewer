@@ -31,6 +31,8 @@ final class CollectionView: UICollectionView {
     func setup(_ ds: UICollectionViewDataSource, delegate: CollectionViewProtocol? = nil) {
         self.dataSource = ds
         self.delegate = self
+        self.alwaysBounceVertical = true
+        self.bounces = true
         self.interactionDelegate = delegate
         if let layout = self.collectionViewLayout as? CollectionViewLayout {
             layout.delegate = self

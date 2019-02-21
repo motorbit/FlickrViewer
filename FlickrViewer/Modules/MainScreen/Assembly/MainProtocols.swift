@@ -15,20 +15,24 @@ protocol MainRouterProtocol: class {
 
 protocol MainViewInput: class {
     func setup(model: MainModel)
+    func showAlertOk(title: String, message: String)
 }
 
 protocol MainPresenterProtocol: class {
-    func showed()
+    func getData()
     func getNext()
     func selected(photo: MainModel.Photo)
+    func search(_ text: String) 
 }
 
 protocol MainInteractorOutput: class {
     func recentFetched(_ result: RecentResponse)
+    func found(_ result: RecentResponse)
     func somethingWentWrong(_ error: Error)
 }
 
 protocol MainInteractorInput: class {
     func getRecent(page: Int)
+    func getSearch(text: String, page: Int)
 }
 

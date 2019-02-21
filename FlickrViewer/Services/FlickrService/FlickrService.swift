@@ -20,7 +20,8 @@ final class FlickrService: FlickerServiceProtocol {
     }
     
     func search(_ text: String, page: Int, size: Int, completion: ((Result<RecentResponse>) -> Void)?)  {
-        guard let request = FlickrSerchRequest(page: page, size: size, text: text)
+        let extras = "date_upload,date_taken,owner_name,url_t,url_l,url_o,url_c"
+        guard let request = FlickrSerchRequest(page: page, size: size, extras: extras, text: text)
             .makeRequest() else { return }
         execute(request, completion: completion)
     }

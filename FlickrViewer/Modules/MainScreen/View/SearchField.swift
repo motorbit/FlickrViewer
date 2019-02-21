@@ -9,7 +9,13 @@
 import UIKit
 import SnapKit
 
-final class SearchField: UITextField {
+protocol SearchFieldDelegate: class {
+    func search(_ text:String)
+}
+
+final class SearchField: UITextField, UITextFieldDelegate {
+    
+    weak var searchDelegate: SearchFieldDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +42,10 @@ final class SearchField: UITextField {
     }()
     
     private func setup() {
+        self.delegate = self
+        self.returnKeyType = .search
+        self.autocapitalizationType = .none
+        self.autocorrectionType = .no
         self.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
         self.clipsToBounds = true
         self.layer.cornerRadius = 10
@@ -57,5 +67,13 @@ final class SearchField: UITextField {
         return bounds.inset(by: padding)
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        self.searchDelegate?.search(textField.text ?? "")
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
 }
