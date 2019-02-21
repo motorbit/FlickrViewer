@@ -62,7 +62,7 @@ extension CollectionView: CollectionViewLayoutDelegate {
         }
         
         let multiple = size.width / width
-        let height = size.height / multiple
+        let height = size.height / multiple + 100
         
         return height
     }

@@ -13,11 +13,21 @@ class ModelConverter {
     static func convert(photo: RecentResponse.Photos.Photo) -> MainModel.Photo? {
         guard let thumb = getThumb(photo: photo),
             let origin = getOriginImage(photo: photo) else { return nil }
-        
+        var uploaded: Date? = nil
+        if let timestamp = Double(photo.dateupload) {
+            uploaded = Date(timeIntervalSince1970: timestamp)
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        var taken: Date? = nil
+        if let date = dateFormatter.date(from: photo.datetaken) {
+            taken = date
+        }
+
         return MainModel.Photo(title: photo.title,
                                thumb: thumb,
-                               uploaded: Date(),
-                               taken: Date(),
+                               uploaded: uploaded,
+                               taken: taken,
                                owner: photo.ownername,
                                orig: origin)
     }

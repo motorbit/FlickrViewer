@@ -36,7 +36,7 @@ struct MainModel {
     struct Photo {
         let title: String
         let thumb: Img?
-        let uploaded: Date
+        let uploaded: Date?
         let taken: Date?
         let owner: String
         let orig: Img?
