@@ -24,6 +24,18 @@ final class MainViewController: UIViewController, MainViewInput {
         return rc
     }()
     
+    private lazy var totalLabel: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 12)
+        self.view.addSubview(lbl)
+        
+        lbl.snp.makeConstraints({ make in
+            make.right.equalTo(self.view).offset(-Constraints.totalLabel.right)
+            make.bottom.equalTo(self.searchField.snp.top).offset(-Constraints.totalLabel.bottom)
+        })
+        return lbl
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let lbl = TitleLabel()
         self.view.addSubview(lbl)
@@ -98,6 +110,7 @@ final class MainViewController: UIViewController, MainViewInput {
     
     func setup(model: MainModel) {
         self.refreshControl.endRefreshing()
+        totalLabel.text = "\(model.total)"
         if ds.model == nil {
             ds.model = model
         } else {
@@ -130,6 +143,12 @@ final class MainViewController: UIViewController, MainViewInput {
 
 extension MainViewController {
     enum Constraints {
+        enum totalLabel {
+            static let right = CGFloat(15)
+            static let bottom = CGFloat(8)
+
+        }
+        
         enum titleLabel {
             static let top = CGFloat(11)
             static let width = CGFloat(100)
