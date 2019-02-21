@@ -10,7 +10,10 @@ import UIKit
 import SnapKit
 import SDWebImage
 
+
 class Cell: UICollectionViewCell {
+    
+    var photo: MainModel.Photo?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +23,7 @@ class Cell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-    private lazy var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imgV = UIImageView()
         imgV.contentMode = .scaleAspectFill
         imgV.clipsToBounds = true
@@ -105,6 +108,7 @@ class Cell: UICollectionViewCell {
     
     
     func setup(photo: MainModel.Photo) {
+        self.photo = photo
         self.clipsToBounds = true
         self.layer.cornerRadius = 12
         setupShadow()

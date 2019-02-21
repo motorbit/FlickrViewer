@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MainCoordinator {
-    
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView)
 }
 
 class MainAssembly: Assembly {
@@ -29,7 +29,7 @@ class MainAssembly: Assembly {
         let view = MainViewController()
         let presenter = MainPresenter()
         let interactor = MainInteractor(self.deps.flickerService)
-        let router = MainRouter()
+        let router = MainRouter(self.deps.coordinator)
         // Connecting
         view.presenter = presenter
         presenter.view = view

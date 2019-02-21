@@ -171,6 +171,7 @@ extension MainViewController {
 }
 
 extension MainViewController: CollectionViewProtocol {
+    
     func scrolled(_ to: Int) {
         print(to)
         guard let model = ds.model else { return }
@@ -179,8 +180,8 @@ extension MainViewController: CollectionViewProtocol {
         }
     }
     
-    func selected(_ photo: MainModel.Photo) {
-        self.presenter.selected(photo: photo)
+    func selected(_ photo: MainModel.Photo, imageView: UIImageView) {
+        self.presenter.selected(photo: photo, imageView: imageView)
     }
 }
 
