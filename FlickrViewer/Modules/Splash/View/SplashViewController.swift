@@ -152,7 +152,7 @@ extension SplashViewController {
     }
     
     enum AnimationDuration {
-        static let uprise = 0.5
-        static let move = 2.0
+        static let uprise = 0.25
+        static let move = 1.25
     }
 }

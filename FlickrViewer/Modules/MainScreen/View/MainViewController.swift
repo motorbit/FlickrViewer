@@ -173,7 +173,6 @@ extension MainViewController {
 extension MainViewController: CollectionViewProtocol {
     
     func scrolled(_ to: Int) {
-        print(to)
         guard let model = ds.model else { return }
         if model.photos.count < model.total, model.photos.count - 25 <= to {
             self.presenter.getNext()
