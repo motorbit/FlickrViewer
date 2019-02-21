@@ -11,9 +11,11 @@ import SnapKit
 import SDWebImage
 
 
-class Cell: UICollectionViewCell {
+final class Cell: UICollectionViewCell {
     
     var photo: MainModel.Photo?
+    
+    static let infoViewHeight: CGFloat = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,12 +25,14 @@ class Cell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
+    // MARK: UI elements
+    
     lazy var imageView: UIImageView = {
         let imgV = UIImageView()
         imgV.contentMode = .scaleAspectFill
         imgV.clipsToBounds = true
         imgV.layer.cornerRadius = 12
-        imgV.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
+        imgV.backgroundColor = Constants.colors.whiteSmoke.uiColor
         self.addSubview(imgV)
         
         imgV.snp.makeConstraints({ make in
@@ -64,7 +68,7 @@ class Cell: UICollectionViewCell {
     private lazy var owner: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 12)
-        lbl.textColor = Constants.colors.pink.stringToUIColor()
+        lbl.textColor = Constants.colors.pink.uiColor
         self.info.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -77,7 +81,7 @@ class Cell: UICollectionViewCell {
     private lazy var title: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: Constants.fonts.boldItalic, size: 10)
-        lbl.textColor = Constants.colors.blue.stringToUIColor()
+        lbl.textColor = Constants.colors.blue.uiColor
         lbl.numberOfLines = 4
         self.info.addSubview(lbl)
         
@@ -94,7 +98,7 @@ class Cell: UICollectionViewCell {
         let view = UIView()
         view.clipsToBounds = true
         view.layer.cornerRadius = 12
-        view.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor().withAlphaComponent(0.5)
+        view.backgroundColor = Constants.colors.whiteSmoke.uiColor.withAlphaComponent(0.5)
         self.addSubview(view)
         
         view.snp.makeConstraints({ make in
@@ -106,6 +110,7 @@ class Cell: UICollectionViewCell {
         return view
     }()
     
+    // MARK: Setup
     
     func setup(photo: MainModel.Photo) {
         self.photo = photo
@@ -132,7 +137,7 @@ class Cell: UICollectionViewCell {
         layer.shadowOpacity = 0.25
         layer.shadowRadius = 4
         layer.shadowOffset = CGSize(width: 0, height: 4)
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = Constants.colors.black.uiColor.cgColor
         
         // add corner radius on `contentView`
         contentView.layer.cornerRadius = 8

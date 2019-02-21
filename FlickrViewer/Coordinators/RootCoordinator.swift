@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RootCoordinator: SplashCoordinator, MainCoordinator {
+final class RootCoordinator: SplashCoordinator, MainCoordinator {
     
     private let _navigation: UINavigationController
     

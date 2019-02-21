@@ -12,7 +12,7 @@ protocol MainCoordinator {
     func openPreview(photo: MainModel.Photo, imageView: UIImageView)
 }
 
-class MainAssembly: Assembly {
+final class MainAssembly: Assembly {
     
     private let deps: Dependencies
     

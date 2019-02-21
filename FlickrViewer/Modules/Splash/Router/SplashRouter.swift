@@ -9,7 +9,7 @@
 
 import UIKit
 
-class SplashRouter: SplashRouterProtocol {
+final class SplashRouter: SplashRouterProtocol {
     
     private let coordinator: SplashCoordinator!
     

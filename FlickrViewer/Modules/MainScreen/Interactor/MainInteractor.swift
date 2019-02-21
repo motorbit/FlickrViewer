@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MainInteractor: MainInteractorInput {
+final class MainInteractor: MainInteractorInput {
     
     weak var presenter: MainInteractorOutput?
     private let flickrService: FlickerServiceProtocol!
@@ -17,7 +17,7 @@ class MainInteractor: MainInteractorInput {
         self.flickrService = flickrService
     }
     
-    func getRecent(page: Int) {
+    func fetchRecent(page: Int) {
         self.flickrService.getRecent(page, size: 50) { (result) in
             switch result {
             case .failure(let error):
@@ -28,7 +28,7 @@ class MainInteractor: MainInteractorInput {
         }
     }
     
-    func getSearch(text: String, page: Int) {
+    func fetchSearch(text: String, page: Int) {
         self.flickrService.search(text, page: page, size: 50) { result in
             switch result {
             case .failure(let error):

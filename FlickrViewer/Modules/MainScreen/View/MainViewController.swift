@@ -12,14 +12,20 @@ import SnapKit
 
 final class MainViewController: UIViewController, MainViewInput {
     
+    // MARK: Public properties
+    
     var presenter: MainPresenterProtocol!
+    
+    // MARK: Private properties
     
     private var ds = CollectionViewDS()
     private var isRefreshing = false
     
+    // MARK: UI elements
+    
     private lazy var refreshControl: UIRefreshControl = {
         let rc = UIRefreshControl()
-        rc.tintColor = Constants.colors.blue.stringToUIColor()
+        rc.tintColor = Constants.colors.blue.uiColor
         rc.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
         return rc
     }()
@@ -64,7 +70,7 @@ final class MainViewController: UIViewController, MainViewInput {
     
     private lazy var separator: UIView = {
         let _view = UIView()
-        _view.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
+        _view.backgroundColor = Constants.colors.whiteSmoke.uiColor
         self.view.addSubview(_view)
         
         _view.snp.makeConstraints({ make in
@@ -90,24 +96,16 @@ final class MainViewController: UIViewController, MainViewInput {
         return cv
     }()
     
+    // MARK: VC Lifecycle
+    
     override func viewDidLoad() {
-        self.view.backgroundColor = Constants.colors.white.stringToUIColor()
-        self.presenter.getData()
+        self.view.backgroundColor = Constants.colors.white.uiColor
+        self.presenter.fetchData()
         collectionView.isHidden = false
         addTapGesture()
     }
     
-    @objc private func refreshWeatherData(_ sender: Any) {
-        isRefreshing = true
-        self.presenter.getData()
-    }
-    
-    private func addTapGesture() {
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnScreen(recognizer:)))
-        tapRecognizer.cancelsTouchesInView = false
-        self.view.addGestureRecognizer(tapRecognizer)
-    }
-    
+    // MARK: Setup
     func setup(model: MainModel) {
         self.refreshControl.endRefreshing()
         totalLabel.text = "\(model.total)"
@@ -125,6 +123,19 @@ final class MainViewController: UIViewController, MainViewInput {
         if model.isNeedScroll {
             collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
         }
+    }
+    
+    // MARK: Actions
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        isRefreshing = true
+        self.presenter.fetchData()
+    }
+    
+    private func addTapGesture() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapOnScreen(recognizer:)))
+        tapRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapRecognizer)
     }
     
     @objc private func tapOnScreen(recognizer: UITapGestureRecognizer) {
@@ -175,7 +186,7 @@ extension MainViewController: CollectionViewProtocol {
     func scrolled(_ to: Int) {
         guard let model = ds.model else { return }
         if model.photos.count < model.total, model.photos.count - 25 <= to {
-            self.presenter.getNext()
+            self.presenter.fetchMore()
         }
     }
     

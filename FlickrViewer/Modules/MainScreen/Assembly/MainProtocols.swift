@@ -19,8 +19,8 @@ protocol MainViewInput: class {
 }
 
 protocol MainPresenterProtocol: class {
-    func getData()
-    func getNext()
+    func fetchData()
+    func fetchMore()
     func selected(photo: MainModel.Photo, imageView: UIImageView)
     func search(_ text: String) 
 }
@@ -32,7 +32,7 @@ protocol MainInteractorOutput: class {
 }
 
 protocol MainInteractorInput: class {
-    func getRecent(page: Int)
-    func getSearch(text: String, page: Int)
+    func fetchRecent(page: Int)
+    func fetchSearch(text: String, page: Int)
 }
 

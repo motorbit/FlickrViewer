@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoPreviewAssembly: Assembly {
+final class PhotoPreviewAssembly: Assembly {
     
     private let deps: Dependencies
     

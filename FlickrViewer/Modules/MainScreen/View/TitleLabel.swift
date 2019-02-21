@@ -34,8 +34,8 @@ final class TitleLabel: UILabel {
             paragraphStyle.alignment = .center
             attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: fullRange)
             attributedString.addAttribute(.kern, value: CGFloat(-1), range: fullRange)
-            attributedString.addAttribute(.foregroundColor, value: Constants.colors.blue.stringToUIColor(), range: firstWordRange)
-            attributedString.addAttribute(.foregroundColor, value: Constants.colors.pink.stringToUIColor(), range: lastWordRange)
+            attributedString.addAttribute(.foregroundColor, value: Constants.colors.blue.uiColor, range: firstWordRange)
+            attributedString.addAttribute(.foregroundColor, value: Constants.colors.pink.uiColor, range: lastWordRange)
             return attributedString
         }
     }

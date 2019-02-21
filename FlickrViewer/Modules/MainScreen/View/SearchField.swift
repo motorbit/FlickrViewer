@@ -16,6 +16,7 @@ protocol SearchFieldDelegate: class {
 final class SearchField: UITextField, UITextFieldDelegate {
     
     weak var searchDelegate: SearchFieldDelegate?
+    let padding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 5)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,14 +47,14 @@ final class SearchField: UITextField, UITextFieldDelegate {
         self.returnKeyType = .search
         self.autocapitalizationType = .none
         self.autocorrectionType = .no
-        self.backgroundColor = Constants.colors.whiteSmoke.stringToUIColor()
+        self.backgroundColor = Constants.colors.whiteSmoke.uiColor
         self.clipsToBounds = true
         self.layer.cornerRadius = 10
         magnifier.isHidden = false
         self.placeholder = "Search"
     }
     
-    let padding = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 5)
+    
     
     override public func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)

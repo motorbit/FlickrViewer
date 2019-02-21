@@ -10,7 +10,6 @@
 import UIKit
 import SnapKit
 
-
 final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, UIViewControllerTransitioningDelegate {
     
     typealias TransitionController = (
@@ -18,8 +17,12 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
         UIViewControllerAnimatedTransitioning &
         UIViewControllerInteractiveTransitioning)
     
+    // MARK: Public properties
+    
     var photo: MainModel.Photo?
     var transitionController: TransitionController?
+    
+    // MARK: Private properties
     
     private var maxSize = CGSize.zero
     private var initialScale: CGFloat = 0
@@ -38,7 +41,9 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
     
     fileprivate var isForcingNonInteractiveDismissal = false
     
-    lazy var scrollView: UIScrollView = {
+    // MARK: UI elements
+    
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.delegate = self
         view.addSubview(scrollView)
@@ -50,7 +55,7 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
         return scrollView
     }()
     
-    lazy var contentView: UIView = {
+    private lazy var contentView: UIView = {
         let contentView = UIView()
         scrollView.addSubview(contentView)
         
@@ -62,7 +67,7 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
         return contentView
     }()
     
-    lazy var imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         contentView.addSubview(imageView)
@@ -73,6 +78,8 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
         
         return imageView
     }()
+    
+    // MARK: VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +104,8 @@ final class PhotoPreviewViewController: UIViewController, UIScrollViewDelegate, 
             return
         }
         
-        super.dismiss(animated: flag) { [unowned self] in
+        super.dismiss(animated: flag) { [weak self] in
+            guard let self = self else { return }
             let canceled = (self.view.window != nil)
             
             if canceled {

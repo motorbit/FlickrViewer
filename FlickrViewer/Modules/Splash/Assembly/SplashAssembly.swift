@@ -12,7 +12,7 @@ protocol SplashCoordinator {
     func showMainScreen()
 }
 
-class SplashAssembly: Assembly {
+final class SplashAssembly: Assembly {
     
     private let deps: Dependencies
     

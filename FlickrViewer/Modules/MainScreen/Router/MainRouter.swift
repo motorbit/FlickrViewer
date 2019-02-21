@@ -9,7 +9,7 @@
 
 import UIKit
 
-class MainRouter: MainRouterProtocol {
+final class MainRouter: MainRouterProtocol {
     
     private let coordinator: MainCoordinator!
     

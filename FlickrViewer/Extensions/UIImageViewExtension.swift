@@ -9,8 +9,8 @@
 import UIKit
 
 extension UIImageView {
-    
-    var imageViewCopy: UIImageView {
+
+    func clone() -> UIImageView {
         let newView = UIImageView()
         newView.image = self.image
         newView.highlightedImage = self.highlightedImage
@@ -27,4 +27,5 @@ extension UIImageView {
         newView.contentMode = self.contentMode
         return newView
     }
+    
 }

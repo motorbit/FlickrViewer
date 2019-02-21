@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModelConverter {
+final class ModelConverter {
     
     static func convert(photo: RecentResponse.Photos.Photo) -> MainModel.Photo? {
         guard let thumb = getThumb(photo: photo),

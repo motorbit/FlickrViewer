@@ -12,7 +12,7 @@ protocol CollectionViewLayoutDelegate: class {
     func collectionView(_ collectionView:UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat
 }
 
-class CollectionViewLayout: UICollectionViewLayout {
+final class CollectionViewLayout: UICollectionViewLayout {
     
     weak var delegate: CollectionViewLayoutDelegate!
     

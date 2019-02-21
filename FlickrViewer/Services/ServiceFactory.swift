@@ -23,7 +23,7 @@ protocol FlickerServiceProtocol {
                 completion: ((Result<RecentResponse>) -> Void)?)
 }
 
-class ServiceFactory {
+final class ServiceFactory {
     func makeFlickerService() -> FlickerServiceProtocol {
         return FlickrService.shared
     }

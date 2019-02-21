@@ -12,11 +12,15 @@ import SnapKit
 
 final class SplashViewController: UIViewController, SplashViewInput {
     
+    //MARK: Public properties
+    
     var presenter: SplashPresenterProtocol!
+    
+    // MARK: UI elements
     
     private lazy var blueCircle: UIView = {
         let view = UIView()
-        view.backgroundColor = Constants.colors.blue.stringToUIColor()
+        view.backgroundColor = Constants.colors.blue.uiColor
         view.clipsToBounds = true
         view.layer.cornerRadius = Constraints.circle.width / 2
         self.view.addSubview(view)
@@ -31,7 +35,7 @@ final class SplashViewController: UIViewController, SplashViewInput {
     
     private lazy var pinkCircle: UIView = {
         let view = UIView()
-        view.backgroundColor = Constants.colors.pink.stringToUIColor()
+        view.backgroundColor = Constants.colors.pink.uiColor
         view.clipsToBounds = true
         view.layer.cornerRadius = Constraints.circle.width / 2
         self.view.addSubview(view)
@@ -53,7 +57,7 @@ final class SplashViewController: UIViewController, SplashViewInput {
         
         lbl.attributedText = attributedString
 
-        lbl.textColor = Constants.colors.white.stringToUIColor()
+        lbl.textColor = Constants.colors.white.uiColor
         self.view.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -68,7 +72,7 @@ final class SplashViewController: UIViewController, SplashViewInput {
         let lbl = UILabel()
         lbl.font = UIFont(name: Constants.fonts.medium, size: Constraints.appNameLabel.fontSize)
         lbl.text = "Flicker Viewer"
-        lbl.textColor = Constants.colors.textColor.stringToUIColor()
+        lbl.textColor = Constants.colors.textColor.uiColor
         self.view.addSubview(lbl)
         
         lbl.snp.makeConstraints({ make in
@@ -80,16 +84,21 @@ final class SplashViewController: UIViewController, SplashViewInput {
         return lbl
     }()
     
+    // MARK: VC Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Constants.colors.white.stringToUIColor()
+        self.view.backgroundColor = Constants.colors.white.uiColor
         startAnimation()
     }
+    
+    // MARK: Animations
     
     private func startAnimation() {
         pinkCircle.alpha = 0
         blueCircle.alpha = 0
-        UIView.animate(withDuration: AnimationDuration.uprise, animations: { [unowned self] in
+        UIView.animate(withDuration: AnimationDuration.uprise, animations: { [weak self] in
+            guard let self = self else { return }
             self.blueCircle.alpha = 0.95
             self.pinkCircle.alpha = 1
         }) { _ in
@@ -98,7 +107,8 @@ final class SplashViewController: UIViewController, SplashViewInput {
     }
     
     private func moveAnimation() {
-        UIView.animate(withDuration: AnimationDuration.move, animations: { [unowned self] in
+        UIView.animate(withDuration: AnimationDuration.move, animations: { [weak self] in
+            guard let self = self else { return }
             self.blueCircle.snp.remakeConstraints ({ make in
                 make.width.height.equalTo(Constraints.circle.width)
                 make.centerY.equalTo(self.view)
@@ -118,7 +128,8 @@ final class SplashViewController: UIViewController, SplashViewInput {
     private func showTextAnimation() {
         self.circlesLabel.alpha = 0
         self.appNameLabel.alpha = 0
-        UIView.animate(withDuration: AnimationDuration.uprise, animations: { [unowned self] in
+        UIView.animate(withDuration: AnimationDuration.uprise, animations: { [weak self] in
+            guard let self = self else { return }
             self.circlesLabel.alpha = 1
             self.appNameLabel.alpha = 1
         }) { _ in
@@ -128,6 +139,8 @@ final class SplashViewController: UIViewController, SplashViewInput {
 }
 
 extension SplashViewController {
+    
+    // MARK: Config
     
     enum Constraints {
         

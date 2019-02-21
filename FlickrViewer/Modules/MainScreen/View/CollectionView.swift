@@ -28,6 +28,11 @@ final class CollectionView: UICollectionView {
         setup()
     }
     
+    private func setup() {
+        self.backgroundColor = Constants.colors.white.uiColor
+        self.register(Cell.self, forCellWithReuseIdentifier: "cell")
+    }
+    
     func setup(_ ds: UICollectionViewDataSource, delegate: CollectionViewProtocol? = nil) {
         self.dataSource = ds
         self.delegate = self
@@ -37,11 +42,6 @@ final class CollectionView: UICollectionView {
         if let layout = self.collectionViewLayout as? CollectionViewLayout {
             layout.delegate = self
         }
-    }
-    
-    private func setup() {
-        self.backgroundColor = Constants.colors.white.stringToUIColor()
-        self.register(Cell.self, forCellWithReuseIdentifier: "cell")
     }
     
     private static var layout: UICollectionViewLayout {
@@ -62,7 +62,7 @@ extension CollectionView: CollectionViewLayoutDelegate {
         }
         
         let multiple = size.width / width
-        let height = size.height / multiple + 100
+        let height = size.height / multiple + Cell.infoViewHeight
         
         return height
     }

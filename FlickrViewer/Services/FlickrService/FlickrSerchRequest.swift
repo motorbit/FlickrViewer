@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FlickrSerchRequest: FlickrRequest {
+final class FlickrSerchRequest: FlickrRequest {
     var text: String
     
     init(page: Int = 1, size: Int = 10, extras: String? = nil, text: String) {

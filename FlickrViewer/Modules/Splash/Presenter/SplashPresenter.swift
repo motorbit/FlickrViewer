@@ -6,7 +6,7 @@
 //  Copyright © 2019 TecSynt Solutions. All rights reserved.
 //
 
-class SplashPresenter: SplashPresenterProtocol {
+final class SplashPresenter: SplashPresenterProtocol {
     
     weak var view: SplashViewInput?
     var router: SplashRouterProtocol!

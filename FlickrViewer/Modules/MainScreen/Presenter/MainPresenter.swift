@@ -8,12 +8,16 @@
 
 import UIKit
 
-class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
+final class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
+    
+    // MARK: Public properties
     
     weak var view: MainViewInput?
     var interactor: MainInteractorInput!
     var router: MainRouterProtocol!
  
+    // MARK: Private properties
+    
     private var currentPage = 1
     private var pages = 0
     
@@ -31,15 +35,36 @@ class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         }
     }
     
-    func getData() {
-        DispatchQueue.global(qos: .background).async { [unowned self] in
+    // MARK: MainPresenter Protocol
+    
+    func fetchData() {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
             if self.isRecent {
-                self.interactor.getRecent(page: self.currentPage)
+                self.interactor.fetchRecent(page: self.currentPage)
             } else {
-                self.interactor.getSearch(text: self.searchText, page: self.currentPage)
+                self.interactor.fetchSearch(text: self.searchText, page: self.currentPage)
             }
         }
     }
+    
+    func search(_ text: String) {
+        self.searchText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.fetchData()
+    }
+    
+    func fetchMore() {
+        let nextPage = currentPage + 1
+        if nextPage <= pages {
+            self.fetchData()
+        }
+    }
+    
+    func selected(photo: MainModel.Photo, imageView: UIImageView) {
+        self.router.openPreview(photo: photo, imageView: imageView)
+    }
+    
+    // MARK: MainInteractor Output
     
     func recentFetched(_ result: RecentResponse) {
         let total = result.photos.total.intValue ?? 0
@@ -50,31 +75,10 @@ class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         self.currentPage = result.photos.page
         self.pages = result.photos.pages
         isNeedScroll = false
-        DispatchQueue.main.async { [unowned self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.view?.setup(model: model)
         }
-    }
-    
-    func somethingWentWrong(_ error: Error) {
-        DispatchQueue.main.async { [unowned self] in
-            self.view?.showAlertOk(title: "Ooops", message: error.localizedDescription)
-        }
-    }
-
-    func getNext() {
-        let nextPage = currentPage + 1
-        if nextPage <= pages {
-            self.getData()
-        }
-    }
-    
-    func selected(photo: MainModel.Photo, imageView: UIImageView) {
-        self.router.openPreview(photo: photo, imageView: imageView)
-    }
-    
-    func search(_ text: String) {
-        self.searchText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.getData()
     }
     
     func found(_ result: RecentResponse) {
@@ -86,10 +90,19 @@ class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         let model = MainModel(total: total, photos:photo, isNeedScroll: isNeedScroll)
         self.pages = result.photos.pages
         isNeedScroll = false
-        DispatchQueue.main.async { [unowned self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             self.view?.setup(model: model)
         }
     }
+    
+    func somethingWentWrong(_ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.view?.showAlertOk(title: "Ooops", message: error.localizedDescription)
+        }
+    }
+    
 }
 
 

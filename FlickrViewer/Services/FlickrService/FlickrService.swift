@@ -13,14 +13,17 @@ final class FlickrService: FlickerServiceProtocol {
     
     private init() {}
     
+    private let extrasSet: Set<Extras> = [.uploadDate, .takenDate, .owner,
+                                          .thumb, .large, .origin, .medium]
+    
     func getRecent(_ page: Int, size: Int, completion: ((Result<RecentResponse>) -> Void)?)  {
-        let extras = "date_upload,date_taken,owner_name,url_t,url_l,url_o,url_c"
+        let extras = extrasSet.map { $0.rawValue }.joined(separator: ",")
         guard let request = FlickrRecentRequest(page: page, size: size, extras: extras).makeRequest() else { return }
         execute(request, completion: completion)
     }
     
     func search(_ text: String, page: Int, size: Int, completion: ((Result<RecentResponse>) -> Void)?)  {
-        let extras = "date_upload,date_taken,owner_name,url_t,url_l,url_o,url_c"
+        let extras = extrasSet.map { $0.rawValue }.joined(separator: ",")
         guard let request = FlickrSerchRequest(page: page, size: size, extras: extras, text: text)
             .makeRequest() else { return }
         execute(request, completion: completion)
@@ -45,6 +48,16 @@ final class FlickrService: FlickerServiceProtocol {
             }
         }
         task.resume()
+    }
+    
+    enum Extras: String {
+        case uploadDate = "date_upload"
+        case takenDate  = "date_taken"
+        case owner      = "owner_name"
+        case thumb      = "url_t"
+        case large      = "url_l"
+        case origin     = "url_o"
+        case medium     = "url_c"
     }
 }
 

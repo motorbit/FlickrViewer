@@ -27,12 +27,12 @@ protocol PhotoPreviewTransitionHostVCProtocol {
     func setInitialConstaintsToHostImageView()
 }
 
-class PhotoPreviewTransitionController: NSObject, PhotoPreviewTransitionControllerProtocol,
+final class PhotoPreviewTransitionController: NSObject, PhotoPreviewTransitionControllerProtocol,
 UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning {
     
     var transitionInfo: PhotoPreviewTransitionInfo
     
-    private struct Constants {
+    private struct TransitionConstants {
         static let FadeInOutTransitionRatio: Double = 1 / 3
         static let TransitionAnimSpringDampening: CGFloat = 1
         
@@ -63,7 +63,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
     
     private lazy var fadeView: UIView = {
         let fadeView = UIView()
-        fadeView.backgroundColor = UIColor.black
+        fadeView.backgroundColor = Constants.colors.black.uiColor
         return fadeView
     }()
     
@@ -74,11 +74,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
     /// Processed as soon as the interactive dismissal has been set up.
     private var pendingAnimations = [() -> Void]()
     
-    private static let supportedModalPresentationStyles: [UIModalPresentationStyle] = [.fullScreen,
-                                                                                       .currentContext,
-                                                                                       .custom,
-                                                                                       .overFullScreen,
-                                                                                       .overCurrentContext]
+    private static let supportedModalPresentationStyles: [UIModalPresentationStyle] = [.fullScreen, .currentContext, .custom, .overFullScreen, .overCurrentContext]
     
     var supportsContextualPresentation: Bool {
         return (transitionInfo.startingView != nil)
@@ -114,7 +110,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
                 return
         }
         
-        let referenceViewCopy = referenceView.imageViewCopy
+        let referenceViewCopy = referenceView.clone()
         startingCornerRadius = referenceViewCopy.layer.cornerRadius
         
         fadeView.alpha = 0
@@ -195,7 +191,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
-            usingSpringWithDamping: Constants.TransitionAnimSpringDampening,
+            usingSpringWithDamping: TransitionConstants.TransitionAnimSpringDampening,
             initialSpringVelocity: 0,
             options: [.curveEaseInOut, .beginFromCurrentState, .allowAnimatedContent],
             animations: scaleAnimations,
@@ -203,7 +199,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         )
         
         UIView.animate(
-            withDuration: self.transitionDuration(using: transitionContext) * Constants.FadeInOutTransitionRatio,
+            withDuration: self.transitionDuration(using: transitionContext) * TransitionConstants.FadeInOutTransitionRatio,
             delay: 0,
             options: [.curveEaseInOut],
             animations: fadeAnimations
@@ -345,7 +341,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
-            usingSpringWithDamping: Constants.TransitionAnimSpringDampening,
+            usingSpringWithDamping: TransitionConstants.TransitionAnimSpringDampening,
             initialSpringVelocity: scaleInitialSpringVelocity,
             options: scaleAnimationOptions,
             animations: scaleAnimations,
@@ -353,7 +349,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         )
         
         UIView.animate(
-            withDuration: self.transitionDuration(using: transitionContext) * Constants.FadeInOutTransitionRatio,
+            withDuration: self.transitionDuration(using: transitionContext) * TransitionConstants.FadeInOutTransitionRatio,
             delay: 0,
             options: [.curveEaseInOut],
             animations: fadeAnimations,
@@ -393,7 +389,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         }
         
         let fadeView = UIView()
-        fadeView.backgroundColor = UIColor.black
+        fadeView.backgroundColor = Constants.colors.black.uiColor
         fadeView.frame = transitionContext.finalFrame(for: from)
         transitionContext.containerView.insertSubview(fadeView, aboveSubview: to.view)
         self.fadeView = fadeView
@@ -443,7 +439,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         }
         
         let imageView = imagePreviewViewController.hostImageView
-        var overlayView = imagePreviewViewController.hostOverlayView
+        let overlayView = imagePreviewViewController.hostOverlayView
         
         let animations = { [weak self] () in
             guard let self = self else {
@@ -490,7 +486,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
-            usingSpringWithDamping: Constants.TransitionAnimSpringDampening,
+            usingSpringWithDamping: TransitionConstants.TransitionAnimSpringDampening,
             initialSpringVelocity: 0,
             options: [.curveEaseInOut, .beginFromCurrentState, .allowAnimatedContent],
             animations: animations,
@@ -554,11 +550,11 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
                 self.dismissalPercent = min(1, abs(translation.y / height))
                 
                 self.completeInteractiveDismissal =
-                    (self.dismissalPercent >= Constants.DismissalPercentThreshold) ||
-                    (abs(self.dismissalVelocityY) >= Constants.DismissalVelocityYThreshold)
+                    (self.dismissalPercent >= TransitionConstants.DismissalPercentThreshold) ||
+                    (abs(self.dismissalVelocityY) >= TransitionConstants.DismissalVelocityYThreshold)
                 
                 // this feels right-ish
-                let dismissalRatio = (1.2 * self.dismissalPercent / Constants.DismissalPercentThreshold)
+                let dismissalRatio = (1.2 * self.dismissalPercent / TransitionConstants.DismissalPercentThreshold)
                 
                 let imageViewCenterY = self.imageViewInitialCenter.y + translation.y
                 
@@ -613,7 +609,7 @@ UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning 
                                         in view: UIView) -> (center: CGPoint, changed: CGFloat) {
         
         let dismissFromBottom =
-            abs(self.dismissalVelocityY) > Constants.DismissalVelocityAnyDirectionThreshold ?
+            abs(self.dismissalVelocityY) > TransitionConstants.DismissalVelocityAnyDirectionThreshold ?
                 self.dismissalVelocityY >= 0 :
                 self.directionalDismissalPercent >= 0
         

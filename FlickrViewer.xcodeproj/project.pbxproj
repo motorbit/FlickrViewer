@@ -12,6 +12,7 @@
 		26B2FF26221EED9E0025050B /* PhotoPreviewTransitionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2FF25221EED9E0025050B /* PhotoPreviewTransitionController.swift */; };
 		26B2FF28221EEEE50025050B /* PhotoPreviewTransitionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2FF27221EEEE50025050B /* PhotoPreviewTransitionInfo.swift */; };
 		26B2FF2A221EEF1A0025050B /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2FF29221EEF1A0025050B /* UIImageViewExtension.swift */; };
+		26B2FF2C221F24630025050B /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2FF2B221F24630025050B /* MainModel.swift */; };
 		26B344BC221D879000D3A3B0 /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B344BB221D879000D3A3B0 /* LayoutGuide.swift */; };
 		26C496D0221B0A6B003FCCD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C496CF221B0A6B003FCCD1 /* AppDelegate.swift */; };
 		26C496DA221B0A6D003FCCD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C496D9221B0A6D003FCCD1 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		26B2FF25221EED9E0025050B /* PhotoPreviewTransitionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewTransitionController.swift; sourceTree = "<group>"; };
 		26B2FF27221EEEE50025050B /* PhotoPreviewTransitionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewTransitionInfo.swift; sourceTree = "<group>"; };
 		26B2FF29221EEF1A0025050B /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		26B2FF2B221F24630025050B /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		26B344BB221D879000D3A3B0 /* LayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutGuide.swift; sourceTree = "<group>"; };
 		26C496CC221B0A6B003FCCD1 /* FlickrViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C496CF221B0A6B003FCCD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 		26F33CDC221B6B340014951B /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				26B2FF2B221F24630025050B /* MainModel.swift */,
 				26F33CDD221B6B340014951B /* MainInteractor.swift */,
 				26F33CFC221CDC240014951B /* ModelConverter.swift */,
 			);
@@ -558,6 +561,7 @@
 				26C49723221B1C35003FCCD1 /* ColorExtension.swift in Sources */,
 				26C49704221B0B40003FCCD1 /* SplashAssembly.swift in Sources */,
 				26C4970B221B0B68003FCCD1 /* BaseProtocols.swift in Sources */,
+				26B2FF2C221F24630025050B /* MainModel.swift in Sources */,
 				26F33CE0221B6B340014951B /* MainProtocols.swift in Sources */,
 				26B344BC221D879000D3A3B0 /* LayoutGuide.swift in Sources */,
 				26C496D0221B0A6B003FCCD1 /* AppDelegate.swift in Sources */,
