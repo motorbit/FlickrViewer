@@ -10,7 +10,7 @@
 import UIKit
 
 protocol MainRouterProtocol: class {
-    func openPreview(photo: MainModel.Photo)
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView)
 }
 
 protocol MainViewInput: class {
@@ -21,7 +21,7 @@ protocol MainViewInput: class {
 protocol MainPresenterProtocol: class {
     func getData()
     func getNext()
-    func selected(photo: MainModel.Photo)
+    func selected(photo: MainModel.Photo, imageView: UIImageView)
     func search(_ text: String) 
 }
 

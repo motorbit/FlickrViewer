@@ -11,7 +11,13 @@ import UIKit
 
 class MainRouter: MainRouterProtocol {
     
-    func openPreview(photo: MainModel.Photo) {
-        print(photo)
+    private let coordinator: MainCoordinator!
+    
+    init(_ coordinator: MainCoordinator) {
+        self.coordinator = coordinator
+    }
+    
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView) {
+        coordinator.openPreview(photo: photo, imageView: imageView)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 protocol CollectionViewProtocol: class {
     func scrolled(_ to: Int)
-    func selected(_ photo: MainModel.Photo)
+    func selected(_ photo: MainModel.Photo, imageView: UIImageView)
 }
 
 final class CollectionView: UICollectionView {
@@ -78,6 +78,8 @@ extension CollectionView: UICollectionViewDelegate {
         guard let ds = collectionView.dataSource as? CollectionViewDS,
               let photo = ds.model?.photos[indexPath.row]
         else { return }
-        self.interactionDelegate?.selected(photo)
+        if let cell = collectionView.cellForItem(at: indexPath) as? Cell {
+            self.interactionDelegate?.selected(photo, imageView: cell.imageView)
+        }
     }
 }

@@ -30,4 +30,16 @@ class RootCoordinator: SplashCoordinator, MainCoordinator {
         _navigation.viewControllers = [mainVC]
     }
     
+    func openPreview(photo: MainModel.Photo, imageView: UIImageView) {
+        let transitionInfo = PhotoPreviewTransitionInfo(
+            interactiveDismissalEnabled: true,
+            startingView: imageView,
+            endingView: imageView)
+        
+        let deps = PhotoPreviewAssembly.Dependencies(photo: photo, transitionInfo: transitionInfo)
+        let previewVC = PhotoPreviewAssembly(deps).build()
+        
+        _navigation.present(previewVC, animated: true, completion: nil)
+    }
+    
 }

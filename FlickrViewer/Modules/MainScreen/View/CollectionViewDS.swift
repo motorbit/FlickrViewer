@@ -21,7 +21,6 @@ final class CollectionViewDS: NSObject, UICollectionViewDataSource {
                                                             for: indexPath) as? Cell,
               let photo = model?.photos[indexPath.row]
         else { return UICollectionViewCell() }
-        
         cell.setup(photo: photo)
         return cell
     }

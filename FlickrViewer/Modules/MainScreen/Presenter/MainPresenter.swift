@@ -6,7 +6,7 @@
 //  Copyright © 2019 TecSynt Solutions. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
     
@@ -68,8 +68,8 @@ class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         }
     }
     
-    func selected(photo: MainModel.Photo) {
-        self.router.openPreview(photo: photo)
+    func selected(photo: MainModel.Photo, imageView: UIImageView) {
+        self.router.openPreview(photo: photo, imageView: imageView)
     }
     
     func search(_ text: String) {
