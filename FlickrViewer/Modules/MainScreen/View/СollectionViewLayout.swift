@@ -34,6 +34,7 @@ final class CollectionViewLayout: UICollectionViewLayout {
     
     override func prepare() {
         cache = []
+        contentHeight = 0
         guard let collectionView = collectionView else {
             return
         }

@@ -20,16 +20,11 @@ final class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
     
     private var currentPage = 1
     private var pages = 0
+    private var lastRequestedPage = 1
     
     private var isRecent = true
     private var isNeedScroll = false
     private var searchText = "" {
-        willSet {
-            if searchText != newValue {
-                isNeedScroll = true
-                currentPage = 1
-            }
-        }
         didSet {
             self.isRecent = searchText.isEmpty
         }
@@ -41,21 +36,28 @@ final class MainPresenter: MainPresenterProtocol, MainInteractorOutput {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
             if self.isRecent {
-                self.interactor.fetchRecent(page: self.currentPage)
+                self.interactor.fetchRecent(page: self.lastRequestedPage)
             } else {
-                self.interactor.fetchSearch(text: self.searchText, page: self.currentPage)
+                self.interactor.fetchSearch(text: self.searchText, page: self.lastRequestedPage)
             }
         }
     }
     
     func search(_ text: String) {
-        self.searchText = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        self.fetchData()
+        let _text = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if _text != self.searchText {
+            self.searchText = _text
+            self.isNeedScroll = true
+            self.currentPage = 1
+            self.lastRequestedPage = 1
+            self.fetchData()
+        }
     }
     
     func fetchMore() {
         let nextPage = currentPage + 1
-        if nextPage <= pages {
+        if pages >= nextPage, nextPage > lastRequestedPage {
+            lastRequestedPage = nextPage
             self.fetchData()
         }
     }
