@@ -16,18 +16,31 @@ struct RecentResponse: Decodable {
         let page: Int
         let pages: Int
         let perpage: Int
-        let total: Total
+        let total: FlickrMagicValue
         let photo: [Photo]
         
         struct Photo: Decodable {
-            let id: String
-            let owner: String
             let title: String
+            let dateupload: String
+            let datetaken: String
+            let ownername: String
+            let url_t: String?
+            let height_t: FlickrMagicValue?
+            let width_t: FlickrMagicValue?
+            let url_l: String?
+            let height_l: FlickrMagicValue?
+            let width_l: FlickrMagicValue?
+            let url_o: String?
+            let height_o: FlickrMagicValue?
+            let width_o: FlickrMagicValue?
+            let url_c: String?
+            let height_c: FlickrMagicValue?
+            let width_c: FlickrMagicValue?
         }
     }
 }
 
-enum Total: Decodable {
+enum FlickrMagicValue: Decodable {
     case integer(Int)
     case string(String)
     
@@ -50,6 +63,6 @@ enum Total: Decodable {
             self = .string(x)
             return
         }
-        throw DecodingError.typeMismatch(Total.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Total"))
+        throw DecodingError.typeMismatch(FlickrMagicValue.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type"))
     }
 }
